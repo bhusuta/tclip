@@ -1,0 +1,63 @@
+% MATLAB Program for Lab Experiment No. 2
+% Signal generation: unit step, unit impulse, unit ramp, and rectangular pulse
+
+% Part (a): Unit Step Signal
+% Continuous-time unit step signal (time-shifted)
+t_cont = -5:0.01:5; % Continuous time
+u_cont_shifted = (t_cont >= 2); % Shifted by 2 units
+figure;
+subplot(4, 2, 1);
+plot(t_cont, u_cont_shifted, 'b', 'LineWidth', 1.5);
+xlabel('t'); ylabel('u(t-2)');
+title('Continuous-Time Unit Step (u(t-2))');
+grid on;
+
+% Discrete-time unit step signal (time-shifted)
+n_disc = -10:10; % Discrete-time indices
+u_disc_shifted = (n_disc >= 2); % Shifted by 2 units
+subplot(4, 2, 2);
+stem(n_disc, u_disc_shifted, 'r', 'filled');
+xlabel('n'); ylabel('u[n-2]');
+title('Discrete-Time Unit Step (u[n-2])');
+grid on;
+
+% Part (b): Unit Impulse Signal (time-shifted)
+delta_disc = (n_disc == 2); % Delta function at n=2
+subplot(4, 2, 3);
+stem(n_disc, delta_disc, 'g', 'filled');
+xlabel('n'); ylabel('δ[n-2]');
+title('Discrete-Time Unit Impulse (δ[n-2])');
+grid on;
+
+% Part (c): Unit Ramp Signal
+% Continuous-time ramp signal (time-shifted)
+ramp_cont = (t_cont - 2) .* (t_cont >= 2); % Ramp signal starting at t=2
+subplot(4, 2, 4);
+plot(t_cont, ramp_cont, 'm', 'LineWidth', 1.5);
+xlabel('t'); ylabel('r(t-2)');
+title('Continuous-Time Ramp Signal (r(t-2))');
+grid on;
+
+% Discrete-time ramp signal (time-shifted)
+ramp_disc = (n_disc - 2) .* (n_disc >= 2); % Ramp signal starting at n=2
+subplot(4, 2, 5);
+stem(n_disc, ramp_disc, 'k', 'filled');
+xlabel('n'); ylabel('r[n-2]');
+title('Discrete-Time Ramp Signal (r[n-2])');
+grid on;
+
+% Part (d): Rectangular Pulse
+T = 2; % Pulse width
+rect_pulse = (t_cont >= -T/2) & (t_cont <= T/2); % Rectangular pulse from -1 to 1
+subplot(4, 2, 6);
+plot(t_cont, rect_pulse, 'c', 'LineWidth', 1.5);
+xlabel('t'); ylabel('Amplitude');
+title('Rectangular Pulse (Width T=2)');
+grid on;
+
+% Display message
+disp('Signals generated:');
+disp('- Continuous and discrete-time unit step (time-shifted)');
+disp('- Discrete-time unit impulse (time-shifted)');
+disp('- Continuous and discrete-time unit ramp (time-shifted)');
+disp('- Rectangular pulse of width T=2 and amplitude one');
